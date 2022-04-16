@@ -49,13 +49,16 @@ void Driver::reverse(uint8_t speed){
 
 ///Lets motor rotate by inertia
 void Driver::freeWheeling(){
-    digitalWrite(_INA, !isForward);
-    digitalWrite(_INB, isForward);
+    analogWrite(_EN,0);
+    digitalWrite(_INA, LOW);
+    digitalWrite(_INB, LOW);
 }
 
 ///Instantly breake the motor
 void Driver::fullyBreak(){
-    this->setSpeed(0);
+    analogWrite(_EN,0);
+    digitalWrite(_INA, HIGH);
+    digitalWrite(_INB, HIGH);
 }
 
 ///Set A rotating Direction 1 Forward 0 Reverse -1 Toggle
